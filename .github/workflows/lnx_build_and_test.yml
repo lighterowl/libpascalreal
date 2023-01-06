@@ -1,0 +1,30 @@
+name: Build and test (Linux)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-test-lnx:
+  
+    runs-on: ubuntu-22.04
+    
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+        buildtype: [Debug, Release]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install libcheck
+      run: sudo apt-get update && sudo apt-get install check ninja-build
+
+    - name: Build and test
+      env:
+        CC: ${{ matrix.compiler }}
+      run: .github/lnx_build_and_test.sh ${{ matrix.buildtype }}
