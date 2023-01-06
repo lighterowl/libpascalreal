@@ -5,7 +5,7 @@ set -e
 btype=$1
 mkdir "build_${btype}_${CXX}"
 cd "build_${btype}_${CXX}"
-cmake .. -G Ninja "-DCMAKE_BUILD_TYPE=${btype}"
+cmake .. "-DCMAKE_BUILD_TYPE=${btype}"
 make -j2
 
 ./libpascalreal_test
