@@ -1,0 +1,25 @@
+name: Build (Windows)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-test-win:
+  
+    runs-on: windows-2022
+    
+    strategy:
+      matrix:
+        buildtype: [Debug, Release]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build and test
+      shell: cmd
+      run: .github/win_build_and_test.bat ${{ matrix.buildtype }}
