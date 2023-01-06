@@ -17,28 +17,28 @@ static double real_mantissa_all_set(void) {
 START_TEST(to_double_1_25) {
   const uint8_t real_1_25[] = {0x81, 0x00, 0x00, 0x00, 0x00, 0x20};
   const double res = libpascalreal_to_double(real_1_25);
-  ck_assert_float_eq(res, 1.25);
+  ck_assert_double_eq(res, 1.25);
 }
 END_TEST
 
 START_TEST(to_double_m_24_125) {
   const uint8_t real_m_24_125[] = {0x85, 0x00, 0x00, 0x00, 0x00, 0xc1};
   const double res = libpascalreal_to_double(real_m_24_125);
-  ck_assert_float_eq(res, -24.125);
+  ck_assert_double_eq(res, -24.125);
 }
 END_TEST
 
 START_TEST(to_double_closest_to_zero) {
   const uint8_t real_almost_zero[] = {0x00, 0xff, 0xff, 0xff, 0xff, 0x7f};
   const double res = libpascalreal_to_double(real_almost_zero);
-  ck_assert_float_eq(res, ldexp(real_mantissa_all_set(), -129));
+  ck_assert_double_eq(res, ldexp(real_mantissa_all_set(), -129));
 }
 END_TEST
 
 START_TEST(to_double_largest_possible) {
   const uint8_t real_largest_possible[] = {0xff, 0xff, 0xff, 0xff, 0xff, 0x7f};
   const double res = libpascalreal_to_double(real_largest_possible);
-  ck_assert_float_eq(res, ldexp(real_mantissa_all_set(), 126));
+  ck_assert_double_eq(res, ldexp(real_mantissa_all_set(), 126));
 }
 END_TEST
 
