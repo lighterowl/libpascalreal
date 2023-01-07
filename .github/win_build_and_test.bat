@@ -3,4 +3,5 @@ mkdir build
 cd build
 C:\vcpkg\vcpkg.exe install check
 cmake .. -DCMAKE_BUILD_TYPE=%1 -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake -G Ninja
-ninja -v test
+ninja -v
+ninja test
